@@ -1,0 +1,18 @@
+#springboot整合rabbitmq的基本配置
+spring:
+  rabbitmq:
+    addresses: localhost:5672
+    username: guest
+    password: guest
+    virtual-host: /
+#rabbitmq消费端配置
+    listener:
+      simple:
+        concurrency: 5 #最大并发数
+        acknowledge-mode: manual #manual:手动签收 ack（确认）
+        max-concurrency: 10
+        prefetch: 1 #同一时间一条消息（限流）
+server:
+  port: 8002
+  servlet:
+    context-path: /
